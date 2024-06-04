@@ -146,6 +146,13 @@ def min_value_node(node):
     return current
 
 
+# Task_3 "Сума"
+def sum_of_values(node):
+    if not node:
+        return 0
+    return node.key + sum_of_values(node.left) + sum_of_values(node.right)
+
+
 if __name__ == "__main__":
     # Driver program to test the above functions
     root = None
@@ -167,6 +174,10 @@ if __name__ == "__main__":
     if min_node:
         print("Найменше значення у AVL-дереві:", min_node.key)
 
+    # Find sum of values
+    total_sum = sum_of_values(root)
+    print("Сума всіх значень у AVL-дереві:", total_sum)
+
     # Delete
     keys_to_delete = [10, -1, 27, 30]
     for key in keys_to_delete:
@@ -184,3 +195,7 @@ if __name__ == "__main__":
     min_node = min_value_node(root)
     if min_node:
         print("Найменше значення у AVL-дереві після видалення:", min_node.key)
+
+    # Find sum of values again after deletion
+    total_sum = sum_of_values(root)
+    print("Сума всіх значень у AVL-дереві після видалення:", total_sum)
