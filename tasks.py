@@ -52,21 +52,6 @@ def right_rotate(y):
     return x
 
 
-def min_value_node(node):
-    current = node
-    while current.left is not None:
-        current = current.left
-    return current
-
-
-# Task_1 "Найбільше значення"
-def max_value_node(node):
-    current = node
-    while current.right is not None:
-        current = current.right
-    return current
-
-
 def insert(root, key):
     if not root:
         return AVLNode(key)
@@ -145,30 +130,57 @@ def delete_node(root, key):
     return root
 
 
-# Driver program to test the above functions
-root = None
-keys = [10, 20, 30, 25, 28, 27, -1]
+# Task_1 "Найбільше значення"
+def max_value_node(node):
+    current = node
+    while current.right is not None:
+        current = current.right
+    return current
 
-for key in keys:
-    root = insert(root, key)
-    print("Вставлено:", key)
-    print("AVL-Дерево:")
-    print(root)
 
-# Find max value
-max_node = max_value_node(root)
-if max_node:
-    print("Найбільше значення у AVL-дереві:", max_node.key)
+# Task_2 "Найменше значення"
+def min_value_node(node):
+    current = node
+    while current.left is not None:
+        current = current.left
+    return current
 
-# Delete
-keys_to_delete = [10, 27, 30]
-for key in keys_to_delete:
-    root = delete_node(root, key)
-    print("Видалено:", key)
-    print("AVL-Дерево:")
-    print(root)
 
-# Find max value again after deletion
-max_node = max_value_node(root)
-if max_node:
-    print("Найбільше значення у AVL-дереві після видалення:", max_node.key)
+if __name__ == "__main__":
+    # Driver program to test the above functions
+    root = None
+    keys = [10, 20, 30, 25, 28, 27, -1]
+
+    for key in keys:
+        root = insert(root, key)
+        print("Вставлено:", key)
+        print("AVL-Дерево:")
+        print(root)
+
+    # Find max value
+    max_node = max_value_node(root)
+    if max_node:
+        print("Найбільше значення у AVL-дереві:", max_node.key)
+
+    # Find min value
+    min_node = min_value_node(root)
+    if min_node:
+        print("Найменше значення у AVL-дереві:", min_node.key)
+
+    # Delete
+    keys_to_delete = [10, -1, 27, 30]
+    for key in keys_to_delete:
+        root = delete_node(root, key)
+        print("Видалено:", key)
+        print("AVL-Дерево:")
+        print(root)
+
+    # Find max value again after deletion
+    max_node = max_value_node(root)
+    if max_node:
+        print("Найбільше значення у AVL-дереві після видалення:", max_node.key)
+
+    # Find min value again after deletion
+    min_node = min_value_node(root)
+    if min_node:
+        print("Найменше значення у AVL-дереві після видалення:", min_node.key)
